@@ -44,15 +44,23 @@ We'll need to disable the read only mode of the main partition first.
 - Go into settings -> developer, and enable SSH
 - You can now log into the Candle controller with SSH: `ssh pi@candle.local`. The password is "smarthome".
 
-Do: `sudo raspi-config`
-...and in the performance menu disable the overlay, and when asked allow the system to reboot.
+We'll create a file on the SD card that will disable read-only mode:
+```
+sudo touch /boot/candle_rw_keep.txt`
+```
+
+Reboot:
+```
+sudo reboot
+```
 
 Now you'll have to go into settings again, enable SSH again, and log into SSH again. Since we disabled read-only mode, SSH will stay enabled from now on.
 
 You can install Samba on Raspberry Pi to more easily work on the addon. That way the files of the controller will show up as a network drive. This command will do this automatically for you:
-`curl -sSL www.candlesmarthome.com/tools/samba.txt | sudo bash`
-
-(You can also use SFTP instead of Samba, in which case you technically don't need to disable read-only mode)
+```
+sudo chmod +x /home/pi/candle/install_samba.sh && sudo /home/pi/candle/install_samba.sh
+```
+(You can also use SFTP instead of Samba)
 
 Next we'll download the example addon onto the system. Using SSH, navigate to the addons directory:
 `cd /home/pi/.webthings/addons`
@@ -63,12 +71,10 @@ Clone the example addon into the addons directory:
 We need to quickly restart the controller to get it to detect the new addon. A fast way to do this without rebooting is:
 `sudo systemctl restart webthings-gateway.service`
 
-The addon should now appear in the installed addons list. Enable it.
-
-You should now see the example addon in the main menu.
+The addon should now appear in the installed addons list. Enable it, and refresh the browser. You should now see the example addon in the main menu.
 
 
-Now you can start actual development.
+## Starting actual development.
 
 After taking a look around and reading all the documentation, the first thing you'll want to do it change the addon's name. This has to be done in a number of places. A good name is short, lowercase and uses dashes between words. For example "internet-radio" is valid.
 - change the directory name to the addon id
