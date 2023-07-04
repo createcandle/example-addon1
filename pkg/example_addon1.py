@@ -38,7 +38,7 @@ from gateway_addon import Database, Adapter, Device, Property, APIHandler, APIRe
 
 # This addon does not load part from other files, but if you had a big addon you might want to split it into separate parts. For example, you could have a file called "example_addon1_api_handler.py" at the same level as example_addon1.py, and import it like this:
 #try:
-#    from .internet_radio_api_handler import *
+#    from .example_addon1_api_handler import *
 #    print("APIHandler imported")
 #except Exception as ex:
 #    print("Error, unable to load APIHandler: " + str(ex))
@@ -184,7 +184,7 @@ class ExampleAddon1Adapter(Adapter):
             self.devices['example-addon1-thing'].connected_notify(True)
 
         except Exception as ex:
-            print("Could not create internet_radio_device: " + str(ex))
+            print("Could not create example_addon1_device: " + str(ex))
 
 
         
@@ -231,7 +231,7 @@ class ExampleAddon1Adapter(Adapter):
             if 'A boolean setting' in config:
                 self.persistent_data['a_boolean_setting'] = bool(config['A boolean setting']) # sometime you may want the addon settings to override the persistent value
                 if self.DEBUG:
-                    print("A boolean setting preference was in config: " + str(self.a_boolean_setting))
+                    print("A boolean setting preference was in config: " + str(self.persistent_data['a_boolean_setting']))
 
             if 'A number setting' in config:
                 #print("-Debugging was in config")
@@ -419,7 +419,7 @@ class ExampleAddon1Adapter(Adapter):
 
 
 class ExampleAddon1Device(Device):
-    """Internet Radio device type."""
+    """Example Addon 1 device type."""
 
     def __init__(self, adapter):
         """
