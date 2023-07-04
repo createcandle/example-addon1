@@ -237,7 +237,7 @@ class ExampleAddon1Adapter(Adapter):
                 #print("-Debugging was in config")
                 self.a_number_setting = int(config['A number setting'])
                 if self.DEBUG:
-                    print("A number setting preference was in config: " + str(not self.a_number_setting))
+                    print("A number setting preference was in config: " + str(self.a_number_setting))
             
 
         except Exception as ex:
