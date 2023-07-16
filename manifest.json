@@ -30,6 +30,7 @@
 	  "A number setting": 5.5,
 	  "A slider setting": 0,
 	  "A string setting": "Hello world",
+	  "A password string setting":"",
 	  "An enum setting": "Auto",
       "Debugging": false
     },
@@ -52,6 +53,11 @@
         "A string setting": {
           "type": "string",
           "description": "Write a description here"
+		},
+        "A password string setting": {
+          "type": "string",
+          "description": "This is a password test",
+		  "writeOnly": true
 		},
         "An enum setting": {
           "type": "string",
